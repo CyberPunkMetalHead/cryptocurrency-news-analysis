@@ -1,7 +1,7 @@
 from datetime import datetime, date, timedelta
 import requests, json, re, os
 
-
+#sentiment and webseaarch keys - you need to create yours
 sentiment_key = os.getenv('sentiment_key')
 websearch_key = os.getenv('websearch_key')
 
@@ -9,6 +9,7 @@ websearch_key = os.getenv('websearch_key')
 # The key can be fed to the trading terminal for a position request.
 # Values are keyowrds to search the web for
 crypto_key_pairs = {"BTCUSD":"Bitcoin", "ETHUSD":"Ethereum", "LTCUSD":"Litecoin", "XRPUSD":"Ripple", "BATUSD":"BATUSD, basic attention token", "DSHUSD":"Dash Coin", "EOSUSD":"EOS", "ETCUSD":"ETC", "IOTUSD":"IOTA", "NEOUSD":"NEO", "OMGUSD":"OMISE Go", "TRXUSD":"Tron", "XLMUSD":"Stellar Lumens", "XMRUSD":"Monero", "ZECUSD":"Zcash"}
+
 #define from published date
 date_since = date.today() - timedelta(days=1)
 
@@ -16,7 +17,7 @@ date_since = date.today() - timedelta(days=1)
 cryptocurrencies = []
 crypto_keywords = []
 
-#Storing keys and values in separate lists. Keys are used with the MT5 API while Values stand as values for the sentiment analysis
+#Storing keys and values in separate lists
 for i in range(len(crypto_key_pairs)):
     cryptocurrencies.append(list(crypto_key_pairs.keys())[i])
     crypto_keywords.append(list(crypto_key_pairs.values())[i])
@@ -27,7 +28,7 @@ def get_news_headlines():
     '''Search the web for news headlines based the keywords in the global variable'''
     news_output = {}
 
-    #TO DO - looping through keywords created odd looking dicts. Gotta loop through keys instead.
+    #TO DO - looping through keywords created odd looking dicts. Gotta loop through keys instead
     for crypto in crypto_keywords:
 
         #create empty dicts in the news output
